@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 import { useTodoStore } from "../store/todo";
 import { useRouter } from "vue-router";
+import { Todo } from "../types/todo";
 
 const router = useRouter();
 const loading = ref(false);
@@ -15,6 +16,18 @@ async function fetchTodos() {
   loading.value = false;
 }
 fetchTodos();
+
+const changeCompleted = async (todo: Todo) => {
+  loading.value = true;
+  await todoStore.putTodo({
+    id: todo.id as string,
+    body: {
+      title: todo.title,
+      completed: !todo.completed as boolean,
+    },
+  });
+  loading.value = false;
+};
 
 function editPage(id: string) {
   router.push({ name: `editTodo`, params: { id } });
@@ -32,9 +45,10 @@ function editPage(id: string) {
         @click="editPage(todo.id)"
       >
         <template v-slot:prepend>
-          <v-list-item-action start>
-            <v-checkbox v-model="todo.completed"></v-checkbox>
-          </v-list-item-action>
+          <button v-if="todo.completed" @click.stop="changeCompleted(todo)">
+            done
+          </button>
+          <button v-else @click="changeCompleted(todo)">not done</button>
         </template>
 
         <v-list-item-title>{{ todo.title }}</v-list-item-title>
