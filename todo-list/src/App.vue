@@ -1,11 +1,7 @@
-<script setup lang="ts">
-import AddTodo from "./pages/AddTodo.vue";
-import Todos from "./pages/Todos.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <AddTodo />
-  <Todos />
+  <router-view></router-view>
 </template>
 
 <style scoped></style>
