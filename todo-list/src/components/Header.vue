@@ -2,7 +2,7 @@
 
 <template>
   <div id="container">
-    <router-link :to="{ name: '' }">Home</router-link>
+    <router-link :to="{ name: 'home' }">Home</router-link>
     <router-link :to="{ name: 'todos' }">Todos</router-link>
     <router-link :to="{ name: 'addTodo' }">Add Todo</router-link>
   </div>
