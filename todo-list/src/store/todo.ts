@@ -78,5 +78,23 @@ export const useTodoStore = defineStore("todo", {
         });
       }
     },
+    async removeTodo(id: string) {
+      try {
+        await axios.delete(`http://localhost:4000/todos/${id}`);
+        Swal.fire({
+          title: "Success!",
+          text: "the Todo deleted successfully",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      } catch (error) {
+        Swal.fire({
+          title: "Error!",
+          text: "There is a problem, please try again",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      }
+    },
   },
 });

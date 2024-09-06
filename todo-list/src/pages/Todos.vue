@@ -17,6 +17,13 @@ async function fetchTodos() {
 }
 fetchTodos();
 
+async function deleteTodo(id: string) {
+  loading.value = true;
+  await todoStore.removeTodo(id);
+  await todoStore.getTodos();
+  loading.value = false;
+}
+
 const changeCompleted = async (todo: Todo) => {
   loading.value = true;
   await todoStore.putTodo({
@@ -56,6 +63,7 @@ function editPage(id: string) {
         <v-list-item-subtitle>
           Notify me about {{ todo.title }}
         </v-list-item-subtitle>
+        <button @click.stop="deleteTodo(todo.id)">delete</button>
       </v-list-item>
     </v-list>
   </div>
