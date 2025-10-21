@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div><router-view></router-view></div>
+  <div>Reminder Detail Page</div>
 </template>
 <style scoped></style>

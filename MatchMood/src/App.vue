@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
+  <div class="h-screen overflow-auto bg-background">
     <router-view />
     <div>
       <router-link to="/">Page 1</router-link>
